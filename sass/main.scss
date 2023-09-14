@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    box-sizing: border-box;
+    background-color: cadetblue;
+    color: aliceblue;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.home {
+    margin: .75rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: .1rem;
+}
+
+.codebox {
+    width: 100%;
+    height: 50%;
+}
+
+.iframe {
+    width: 100%;
+    height: 15rem;
+    border: none;
+    background-color: darkslategray;
+}
+
+.transpiled {
+    width: 100%;
+    height: 400px;
+    overflow: scroll;
+}
+
+.editor-area {
+    display: flex;
+    flex-direction: column;
+}
