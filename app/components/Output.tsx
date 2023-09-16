@@ -1,4 +1,5 @@
 import { useBuilder } from "~/esbuild-context/BuildContext";
+import Loader from "~/images/Loader";
 
 const doc = `
     <!DOCTYPE html>
@@ -26,10 +27,16 @@ const doc = `
 
 const Output = () => {
 
-    const { outputRef } = useBuilder();
+    const { outputRef, loadingCode } = useBuilder();
 
     return (
-        <div className="output">
+        <section className="output">
+            {
+                loadingCode && 
+                <div className="loading-code">
+                    <Loader />
+                </div>
+            }
             <iframe
                 ref={outputRef}
                 className="iframe"
@@ -37,7 +44,7 @@ const Output = () => {
                 sandbox="allow-scripts"
                 title="IFrame"
             ></iframe>
-        </div>
+        </section>
     );
 };
 
