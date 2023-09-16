@@ -4,6 +4,30 @@
   box-sizing: inherit;
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(72deg);
+  }
+  40% {
+    transform: rotate(144deg);
+  }
+  60% {
+    transform: rotate(216deg);
+  }
+  80% {
+    transform: rotate(288deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+html {
+  font-size: 62.5%;
+}
+
 body {
   box-sizing: border-box;
   background-color: cadetblue;
@@ -12,37 +36,144 @@ body {
   min-height: 100vh;
 }
 
-.home {
-  margin: 0.75rem;
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.brand {
+.header {
+  height: 3rem;
+}
+.header .brand {
   display: flex;
   align-items: center;
   gap: 0.1rem;
 }
-
-.codebox {
-  width: 100%;
-  height: 50%;
+.header .brand .logo {
+  width: 3rem;
+  height: 3rem;
 }
 
-.iframe {
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 3rem - 2rem);
+}
+
+.footer {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.builder-area {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.builder-area .editor {
   width: 100%;
-  height: 15rem;
+  height: 50%;
+  background-color: white;
+  border: 1px solid darkslateblue;
+}
+.builder-area .editor .buttons {
+  height: 2.5rem;
+  border-bottom: 1px solid darkslateblue;
+}
+.builder-area .editor .buttons .button {
+  background-color: transparent;
+  border: none;
+  border-right: 1px solid darkslateblue;
+  border-bottom: none;
+  color: darkslateblue;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  cursor: pointer;
+}
+.builder-area .editor .monaco-editor-wrapper {
+  height: calc(100% - 2.5rem);
+}
+.builder-area .output {
+  width: 100%;
+  height: 50%;
+  position: relative;
+}
+.builder-area .output .loading-code {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.builder-area .output .loading-code .icon-loader {
+  width: 5rem;
+  height: 5rem;
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.builder-area .output .iframe {
+  width: 100%;
+  height: 100%;
   border: none;
   background-color: darkslategray;
+}
+@media (min-width: 768px) {
+  .builder-area {
+    flex-direction: row;
+    justify-content: space-around;
+    height: 80vh;
+  }
+  .builder-area .editor {
+    width: 50%;
+    height: 100%;
+  }
+  .builder-area .output {
+    width: 50%;
+    height: 100%;
+  }
+  .builder-area .output .iframe {
+    height: 100%;
+  }
+}
+
+.editor-loading {
+  background-color: aliceblue;
+  border: 1px solid aquamarine;
+  color: cadetblue;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.editor-loading .icon-loader {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .transpiled {
   width: 100%;
   height: 400px;
   overflow: scroll;
-}
-
-.editor-area {
-  display: flex;
-  flex-direction: column;
 }
 
 /*# sourceMappingURL=index.css.map */

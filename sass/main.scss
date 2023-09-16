@@ -4,6 +4,27 @@
     box-sizing: inherit;
 }
 
+@keyframes spin {
+    from {transform: rotate(0deg)}
+    20% {transform: rotate(72deg)}
+    40% {transform: rotate(144deg)}
+    60% {transform: rotate(216deg)}
+    80% {transform: rotate(288deg)}
+    to { transform: rotate(360deg)}
+}
+
+@mixin spinner() {
+    animation-name: spin;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+html {
+    font-size: 62.5%;
+}
+
 body {
     box-sizing: border-box;
     background-color: cadetblue;
@@ -12,35 +33,157 @@ body {
     min-height: 100vh;
 }
 
-.home {
-    margin: .75rem;
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    //margin: .5rem;
 }
 
-.brand {
+$header-height: 3rem;
+$footer-height: 2rem;
+
+.header {
+    height: $header-height;
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.1rem;
+
+        .logo {
+            width: 3rem;
+            height: 3rem;
+        }
+    }
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - $header-height - $footer-height);
+}
+
+.footer {
+    height: $footer-height;
     display: flex;
     align-items: center;
-    gap: .1rem;
+    justify-content: center;
 }
 
-.codebox {
-    width: 100%;
-    height: 50%;
+.builder-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .editor {
+        width: 100%;
+        height: 50%;
+        background-color: white;
+        border: 1px solid darkslateblue;
+
+        .buttons {
+            height: 2.5rem;
+            border-bottom: 1px solid darkslateblue;
+
+            .button {
+                background-color: transparent;
+                border: none;
+                border-right: 1px solid darkslateblue;
+                border-bottom: none;
+                color: darkslateblue;
+                height: 2.5rem;
+                display: flex;
+                align-items: center;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                //border-top-right-radius: .5rem;
+                //border-top-left-radius: .5rem;
+                cursor: pointer;
+            }
+        }
+
+        .monaco-editor-wrapper {
+            height: calc(100% - 2.5rem);
+
+            //.monaco-editor {}
+        }
+    }
+
+    .output {
+        width: 100%;
+        height: 50%;
+        position: relative;
+
+        .loading-code {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .icon-loader {
+                width: 5rem;
+                height: 5rem;
+                @include spinner();
+            }
+        }
+
+        .iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: darkslategray;
+        }
+    }
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-around;
+        height: 80vh;
+
+        .editor {
+            width: 50%;
+            height: 100%;
+
+            //.monaco-editor {}
+        }
+
+        .output {
+            width: 50%;
+            height: 100%;
+
+            .iframe {
+                height: 100%;
+            }
+        }
+    }
 }
 
-.iframe {
+.editor-loading {
+    background-color: aliceblue;
+    border: 1px solid aquamarine;
+    color: cadetblue;
     width: 100%;
-    height: 15rem;
-    border: none;
-    background-color: darkslategray;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .icon-loader {
+        @include spinner();
+    }
 }
 
 .transpiled {
     width: 100%;
     height: 400px;
     overflow: scroll;
-}
-
-.editor-area {
-    display: flex;
-    flex-direction: column;
 }
