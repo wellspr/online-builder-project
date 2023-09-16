@@ -1,5 +1,5 @@
-import { json, type ActionArgs, type V2_MetaFunction } from "@remix-run/node";
-import App from "~/components/Homepage";
+import { type V2_MetaFunction } from "@remix-run/node";
+import BuilderPage from "~/components/BuilderPage";
 
 export const meta: V2_MetaFunction = () => {
     return [
@@ -8,8 +8,6 @@ export const meta: V2_MetaFunction = () => {
     ];
 };
 
-export default function Index() {
-    return (
-        <App />
-    );
-};
+const Index = () => <BuilderPage />;
+
+export default Index;
