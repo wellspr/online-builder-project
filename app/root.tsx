@@ -8,11 +8,12 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
+import Header from "./layout/Header";
+import Footer from "./layout/Footer";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export default function App() {
-
     return (
         <html lang="en">
             <head>
@@ -22,7 +23,13 @@ export default function App() {
                 <Links />
             </head>
             <body>
-                <Outlet />
+                <div className="app">
+                    <Header />
+                    <main className="main-container">
+                        <Outlet />
+                    </main>
+                    <Footer />
+                </div>
                 <ScrollRestoration />
                 <Scripts />
                 <LiveReload />
